@@ -1,4 +1,5 @@
 import React, { Children } from "react"
+import Card from "./Card"
 // import ErrorBoundary from "./ErrorBoundary"
 // import Child from "./Children"
 
@@ -10,7 +11,7 @@ const Current = ({ current, location }) => {
 	let currentTemp = Math.round(current.temp_c)
 
 	return (
-		<div className='border w-full h-[500px] my-8 box-border rounded-xl bg-blue-500'>
+		<div className='border border-transparent w-full h-[500px] my-8 box-border rounded-xl bg-white/30 backdrop-blur-lg text-shadow'>
 			<h2 className='text-6xl font-extrabold mt-4 text-center text-white border-b-2 mx-4'>Current</h2>
 			{current && (
 				<div className='w-full h-max'>

@@ -31,8 +31,8 @@ const Hourly = ({ hourly, lastUpdated }) => {
 	})
 
 	return (
-		<div className='border w-full min-h-[500px] h-fit pb-8 my-8 box-border rounded-xl shadow-md bg-blue-500'>
-			<h2 className='text-3xl font-extrabold mt-4 text-center text-white border-b-2 mx-4'>Hourly</h2>
+		<div className='border border-transparent w-full min-h-[500px] h-fit pb-8 my-8 box-border rounded-xl bg-white/30 backdrop-blur-lg'>
+			<h2 className='text-3xl font-extrabold mt-4 text-center text-white border-b-2 mx-4 text-shadow'>Hourly</h2>
 			<div className='w-full '>{hourEl}</div>
 		</div>
 	)

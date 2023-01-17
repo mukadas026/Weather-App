@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
+import {BsSearch} from 'react-icons/bs'
 
 const Search = (props) => {
 	const [value, setValue] = useState("")
@@ -45,28 +46,31 @@ const Search = (props) => {
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className='relative w-fit flex flex-col mt-12'
+			className='relative w-fit h-0 flex flex-col mt-12 border-transparent outline-transparent ring-transparent'
 		>
-			<div className='relative'>
+			<div className='relative border-0 outline-0 ring-0'>
 				<div className='w-fit relative flex flex-col'>
 					<input
 						type='text'
 						value={value}
 						onChange={handleChange}
-						placeholder='Input location here'
-						className='bg-blue-500 text-white indent-4 font-bold font-sans text-lg w-64 h-10 peer placeholder:text-white rounded-lg focus:placeholder:text-transparent transition-all'
+						// placeholder='Input location here'
+						className='bg-white/30 backdrop-blur-lg text-shadow text-white indent-4 pr-4 font-bold font-sans text-lg w-72 h-10 peer placeholder:text-white rounded-lg focus:placeholder:text-transparent transition-all'
 					/>
-					<span className='text-white font-bold font-sans text-lg absolute translate-y-1 indent-4 transition-all peer-focus:translate-y-[-25px] peer-focus:text-blue-500 -z-10'>
+					<span className='text-white font-bold font-sans text-lg absolute translate-y-1 indent-4 transition-all peer-focus:translate-y-[-30px] text-shadow z-10'>
 						Input location here
 					</span>
 				</div>
-				<div ref={list} className='bg-yellow-500 absolute w-full top-full mt-4 text-white font-bold rounded-xl text-md'>
+				<button className='mr-4 rounded mt-2 text-white font-bold absolute top-0 right-0'><BsSearch size='25' /></button>
+
+				<div ref={list} className='bg-yellow-500 absolute w-full top-full mt-4 text-white font-bold rounded-xl text-md z-10'>
 					{locations}
 				</div>
+
 			</div>
-			<div className='flex items-center justify-center'>
-				<button className='py-2 px-4 bg-blue-500 rounded mt-2 text-white font-bold '>Get Weather</button>
-			</div>
+			{/* <div className='flex items-center justify-center'>
+				<button className='py-2 px-4 bg-blue-500 rounded mt-2 text-white font-bold '><BsSearch size='25' /></button>
+			</div> */}
 		</form>
 	)
 }

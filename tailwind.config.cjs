@@ -12,6 +12,9 @@ module.exports = {
 					'to': { transform: "rotate(360deg)" },
 				},
 			},
+			backgroundImage:{
+				'snow1': 'url("./src/assets/snow4.jpg")',
+			}
 		},
 	},
 	plugins: [],
