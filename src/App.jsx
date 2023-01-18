@@ -2,12 +2,9 @@ import React, { useEffect, useRef, useState } from "react"
 import Search from "./components/Search"
 import Current from "./components/Current"
 import Hourly from "./components/Hourly"
-import Card from "./components/Card"
-import ErrorBoundary from "./components/ErrorBoundary"
-import Loading from "./components/Loading"
 
-import snow from './assets/sun.jpg'
-import dc from './assets/darkclouds.jpg'
+import normal from './assets/normal.jpg'
+
 
 import "./index.css"
 
@@ -17,7 +14,7 @@ const App = () => {
 	const [location, setLocation] = useState("")
 	const [forecast, setForecast] = useState("")
 	const [loading, setLoading] = useState(false)
-
+	const [image, setImage] = useState(null)
 	const loadingRef = useRef(null)
 
 	useEffect(() => {
@@ -40,12 +37,34 @@ const App = () => {
 		// loadingRef.current.classList.add('hidden')
 	}, [location])
 	
+	useEffect(() => {
+		if(forecast && !forecast.error){
+			// console.log('hhell')
+			if(forecast.current.temp_c < 15){
+				import('./assets/snow4.jpg')
+				.then((res) => setImage(res.default))
+				.catch(err => console.log(err))
+			}else if(forecast.current.temp_c < 30){
+				import('./assets/normal.jpg')
+				.then((res) => setImage(res.default))
+				.catch(err => console.log(err))
+			}else{
+				import('./assets/hot.jpg')
+				.then((res) => setImage(res.default))
+				.catch(err => console.log(err))
+			}
+		}
+	}, [forecast])
+	// console.log(image)
 	const styles = {
-		backgroundImage: `url(${dc})`,
+		backgroundImage: `url(${image == null ? normal : image})`,
+		backgroundSize: 'cover',
+		backgroundAttachment: 'fixed',
+		backgroundPosition: 'right'
 	}
-
+// console.log(forecast)
 	return (
-		<div style={styles} className='w-screen box-border relative pb-5 '>
+		<div style={styles} className='w-screen min-h-screen box-border relative pb-5 '>
 			<div
 				ref={loadingRef}
 				className='absolute top-[50vh] left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 hidden z-10'
@@ -71,7 +90,7 @@ const App = () => {
 					/>
 				</div>
 			) : (
-				<div className='border w-11/12 mx-auto flex items-center justify-center h-[500px] my-8 box-border rounded-xl bg-white/30 backdrop-blur-lg text-shadow p-4'>
+				<div className='border w-11/12 mx-auto flex items-center justify-center h-[500px] my-8 box-border rounded-xl bg-white/30 backdrop-blur-lg text-shadow '>
 					<p className='text-5xl text-center font-bold text-white'>
 						Type a location in the search bar to know the current weather of your local area
 					</p>
